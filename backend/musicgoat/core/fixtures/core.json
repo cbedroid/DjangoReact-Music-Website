@@ -1,0 +1,145 @@
+[
+{
+    "model": "core.artist",
+    "pk": 1,
+    "fields": {
+        "name": "QwaeTheGoat",
+        "real_name": "",
+        "image": "258615818_106515435190111_8521834302737704378_n-removebg-clear-preview.png"
+    }
+},
+{
+    "model": "core.socialmedia",
+    "pk": 1,
+    "fields": {
+        "name": "Instagram",
+        "link": "https://www.instagram.com/qwaethegoat1/",
+        "icon": "fa-brands fa-instagram",
+        "artist": 1
+    }
+},
+{
+    "model": "core.socialmedia",
+    "pk": 2,
+    "fields": {
+        "name": "Youtube",
+        "link": "https://www.youtube.com/channel/UCj2IHdYwkcMXAOKmfazSL6w/videos",
+        "icon": "fa-brands fa-youtube",
+        "artist": 1
+    }
+},
+{
+    "model": "core.socialmedia",
+    "pk": 3,
+    "fields": {
+        "name": "SoundCloud",
+        "link": "https://soundcloud.com/life-with-qwaethegoat",
+        "icon": "fa-brands fa-soundcloud",
+        "artist": 1
+    }
+},
+{
+    "model": "core.socialmedia",
+    "pk": 4,
+    "fields": {
+        "name": "Spotify",
+        "link": "https://open.spotify.com/artist/5xb7RxYeTiINIyLjB588r3",
+        "icon": "fa-brands fa-spotify",
+        "artist": 1
+    }
+},
+{
+    "model": "core.socialmedia",
+    "pk": 5,
+    "fields": {
+        "name": "AudioMack",
+        "link": "https://audiomack.com/qwaethegoat1",
+        "icon": "fa-solid fa-waveform",
+        "artist": 1
+    }
+},
+{
+    "model": "core.album",
+    "pk": 1,
+    "fields": {
+        "name": "Fallen Soldier",
+        "cover": "https://i.scdn.co/image/ab67616d00001e0226aede96be143e775411e533",
+        "artist": 1,
+        "active": false,
+        "is_featured": false,
+        "slug": "fallen-soldier"
+    }
+},
+{
+    "model": "core.album",
+    "pk": 2,
+    "fields": {
+        "name": "welcome to greenwood",
+        "cover": "https://assets.audiomack.com/qwaethegoat1/1040c63a1587286189748c6a9899f25ff3531c5419d774643537c8e4f9b085e4.jpeg?type=album&width=280&height=280&max=true",
+        "artist": 1,
+        "active": true,
+        "is_featured": true,
+        "slug": "welcome-to-greenwood"
+    }
+},
+{
+    "model": "core.song",
+    "pk": 1,
+    "fields": {
+        "name": "Welcome to Greenwood",
+        "audio": "audio/welcome_to_greenwood.mp3",
+        "track_number": 1,
+        "views": 35,
+        "duration": 0.0,
+        "album": 2
+    }
+},
+{
+    "model": "core.song",
+    "pk": 2,
+    "fields": {
+        "name": "Make' em Mad",
+        "audio": "audio/QwaeTheGoat_-_Make_em_mad.mp3",
+        "track_number": 5,
+        "views": 71,
+        "duration": 0.0,
+        "album": 2
+    }
+},
+{
+    "model": "core.song",
+    "pk": 3,
+    "fields": {
+        "name": "Trust Nobody (feat Alandayougeen)",
+        "audio": "audio/QwaeTheGoat_-_Trust_Nobody_feat._alandayougeen.mp3",
+        "track_number": 3,
+        "views": 42,
+        "duration": 0.0,
+        "album": 2
+    }
+},
+{
+    "model": "core.song",
+    "pk": 4,
+    "fields": {
+        "name": "BeatBox (remix) (feat spotemgotem)",
+        "audio": "audio/QwaeTheFoat_-_BeatBoxremix_feat._Spotemgotem.mp3",
+        "track_number": 4,
+        "views": 30,
+        "duration": 0.0,
+        "album": 2
+    }
+},
+{
+    "model": "core.song",
+    "pk": 5,
+    "fields": {
+        "name": "Ride with that stick (feat. Alandayougeen)",
+        "audio": "audio/Ride_with_that_stick_feat._alandayougeen.mp3",
+        "track_number": 2,
+        "views": 65,
+        "duration": 0.0,
+        "album": 2
+    }
+}
+]

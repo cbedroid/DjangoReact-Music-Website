@@ -1,0 +1,10 @@
+{
+  "git.ignoreLimitWarning": true,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "cSpell.words": [
+    "precomposed",
+    "Qwae"
+  ]
+}

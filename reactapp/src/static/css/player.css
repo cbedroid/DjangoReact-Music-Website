@@ -1,0 +1,43 @@
+#player {
+  display: block;
+  width: 100%;
+  padding-left: clamp(100px, calc(100vw / 4), 200px);
+  padding-right: 20px;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(60, 60, 60, 0.5));
+  color: #feeeae; }
+
+.player-controls {
+  padding: 6px; }
+.player-controls #play-btn, .player-controls #pause-btn {
+  color: #000; }
+
+.ant-progress-bg {
+  background: #feeeae; }
+
+#song-name {
+  font-weight: bold;
+  text-shadow: 2px 2px 10px #000;
+  margin-left: 8px; }
+
+.ant-list-items {
+  display: block;
+  border-top: 2px solid #555;
+  padding: 8px;
+  height: 400px;
+  overflow: auto;
+  /* width */
+  /* Track */
+  /* Handle */ }
+.ant-list-items::-webkit-scrollbar {
+  width: 10px; }
+.ant-list-items::-webkit-scrollbar-track {
+  background: #555; }
+.ant-list-items::-webkit-scrollbar-thumb {
+  background: #feeeae;
+  border-radius: 8px;
+  border: 1px solid #555; }
+.ant-list-items::-webkit-scrollbar-thumb:hover {
+  background: #feeeba; }
+
+.ant-list-item-meta-title {
+  color: #feeeae; }
