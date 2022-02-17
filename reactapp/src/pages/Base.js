@@ -2,10 +2,8 @@ import React from "react";
 
 const Base = (props) => {
   return (
-    <section id="main-section">
-      <section id="main-content">
-        {props.children}
-      </section>
+    <section id="main-content" className="pt-20 ">
+      {props.children}
     </section>
   )
 };
