@@ -1,7 +1,6 @@
-// import React from "react";
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Skeleton from "./skeleton.jsx"
+import Skeleton from "@mui/material/Skeleton";
 import { Link } from "react-router-dom"
 import { fetchAlbums, selectAllAlbums, getFeaturedAlbum } from "../features/album";
 
@@ -19,10 +18,9 @@ const Hero = ({ artist }) => {
     }
   }, [apiStatus, dispatch])
 
-
   return (
     <section id="header">
-      <div className="bg-white dark:bg-gray-800 flex relative z-20 items-start overflow-hidden py-12">
+      <div className="bg-gray-100 dark:bg-gray-800 flex relative z-20 items-start overflow-hidden py-12">
         {albums.length > 0 ? (
           <div className="container mx-auto px-6 flex relative">
             <div className="sm:w-2/3 lg:w-2/5 flex flex-col relative z-20">
@@ -36,7 +34,7 @@ const Hero = ({ artist }) => {
                   {featured_album.length > 0 ? featured_album[0]?.name : "It's today or never."}
                 </span>
                 <p className="text-sm sm:text-base text-gray-700 dark:text-white mt-4">
-                  Young talented prodigy from the small town of GreenWood,Mississippi is taking over the sound wave with new lyrics.
+                  {albums[0].artist.description}
                 </p>
               </div>
               <div className="flex mt-8">
@@ -50,14 +48,23 @@ const Hero = ({ artist }) => {
             </div>
             <div className="hidden sm:block sm:w-1/3 lg:w-3/5 text-gray-200 relative">
               {artist?.length !== 0 ?
-                <img className="mx-auto w-full h-[700px]" src={artist ? artist.image : "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.alhaya-medical.com%2Fwp-content%2Fuploads%2F2017%2F10%2FLoading-GIF-Image-4.gif&f=1&nofb=1"} alt="artist" />
+                <img className="mx-auto w-[700px] h-[700px] rounded-md shadow-lg" src={artist ? artist.image : "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.alhaya-medical.com%2Fwp-content%2Fuploads%2F2017%2F10%2FLoading-GIF-Image-4.gif&f=1&nofb=1"} alt="artist" />
                 :
-                <Skeleton />
+                <Skeleton variant="rectangular" width="700px" height="700px" />
               }
             </div>
           </div>
         ) : (
-          <Skeleton />
+
+          <div className="container mx-auto px-6 flex flex-col relative">
+            <Skeleton className="rounded-md" variant="text" width="400px" height="75px" />
+            <Skeleton className="rounded-md" variant="text" width="400px" height="55px" />
+            <Skeleton className="rounded-md" variant="text" width="400px" height="165px" />
+            <div className="flex gap-x-2">
+              <Skeleton className="rounded-md" variant="rectangular" width="85px" height="45px" />
+              <Skeleton className="rounded-md" variant="rectangular" width="85px" height="45px" />
+            </div>
+          </div>
         )
         }
       </div>
