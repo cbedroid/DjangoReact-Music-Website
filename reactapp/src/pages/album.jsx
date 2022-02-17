@@ -2,9 +2,8 @@ import axios from "axios"
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAlbums, selectAllAlbums } from "../features/album";
-import Skeleton from "../components/skeleton.jsx";
-import AudioPlayer from "../components/AudioPlayer.jsx"
-// import ReactAudioPlayer from "react-audio-player";
+import AlbumSkeleton from "../components/AlbumSkeleton.jsx";
+import AudioPlayer from "../components/audioPlayer.jsx"
 
 const Album = ({ match }) => {
 
@@ -67,10 +66,10 @@ const Album = ({ match }) => {
           <div className="bg-gray-200 dark:bg-gray-600 w-full pb-4 rounded-md">
             <div id="album-detail" className="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-12 py-16">
               <div className="lg:col-start-2 md:pl-20">
-                <h2 className="text-6xl leading-8 font-extrabold text-gray-900 dark:text-white tracking-tight sm:leading-9 mb-4">
-                  <span className="block text-gray-500 dark:text-indigo-400 font-bold mb-2">{album.artist.name}</span>
+                <h2 className="text-6xl leading-8 font-extrabold  tracking-tight sm:leading-9 mb-4">
+                  <span className="block text-gray-600 dark:text-indigo-400 font-bold mb-2">{album.artist.name}</span>
                 </h2>
-                <h2 className="text-3xl leading-8  text-gray-700 dark:text-gray-400 font-semibold pl-3">{album.name}</h2>
+                <h2 className="text-3xl leading-8  text-gray-400 font-semibold pl-3">{album.name}</h2>
                 <div className="audio-wrapper mt-8">
                   <AudioPlayer songlist={songs} song={currentSong} songSetter={setCurrentSong} />
                 </div>
@@ -126,7 +125,7 @@ const Album = ({ match }) => {
             </div>
           </div>
         </div>)
-        : (<Skeleton />)}
+        : (<AlbumSkeleton />)}
     </section>
   )
 }
