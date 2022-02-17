@@ -1,4 +1,4 @@
-from core.models import Album, Artist, SocialMedia, Song
+from core.models import Album, Artist, SocialMedia, Song, Video
 from django.contrib import admin
 from django.templatetags.static import static
 from django.utils.html import mark_safe
@@ -30,6 +30,11 @@ class AlbumAdmin(admin.ModelAdmin):
 
     def total_songs(self, obj):
         return obj.songs.count()
+
+
+@admin.register(Video)
+class VideoAdmin(admin.ModelAdmin):
+    model = Video
 
 
 @admin.register(SocialMedia)

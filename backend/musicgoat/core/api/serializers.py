@@ -1,4 +1,4 @@
-from core.models import Album, Artist, SocialMedia, Song
+from core.models import Album, Artist, SocialMedia, Song, Video
 from rest_framework import serializers
 
 
@@ -38,4 +38,15 @@ class AlbumSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         fields = super().to_representation(instance)
         fields["slug"] = instance.get_absolute_url()
+        return fields
+
+
+class VideoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Video
+        fields = "__all__"
+
+    def to_representation(self, instance):
+        fields = super().to_representation(instance)
+        fields["artist"] = Artist.objects.filter(id=instance.artist.id).values()[0]
         return fields

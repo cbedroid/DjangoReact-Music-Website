@@ -1,4 +1,4 @@
-from core.models import Album, Artist, SocialMedia, Song
+from core.models import Album, Artist, SocialMedia, Song, Video
 from rest_framework import viewsets
 
 from .serializers import (
@@ -6,6 +6,7 @@ from .serializers import (
     ArtistSerializer,
     SocialMediaSerializer,
     SongSerializer,
+    VideoSerializer,
 )
 
 
@@ -27,3 +28,8 @@ class AlbumViewSet(viewsets.ModelViewSet):
 class SongViewSet(viewsets.ModelViewSet):
     queryset = Song.objects.all()
     serializer_class = SongSerializer
+
+
+class VideoViewSet(viewsets.ModelViewSet):
+    queryset = Video.objects.all()
+    serializer_class = VideoSerializer

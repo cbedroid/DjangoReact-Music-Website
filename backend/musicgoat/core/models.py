@@ -12,6 +12,7 @@ logger = logging.getLogger(__name__)
 class Artist(models.Model):
     name = models.CharField(max_length=60, unique=True)
     real_name = models.CharField(max_length=80, blank=True, unique=True)
+    description = models.TextField(max_length=500, blank=True)
     image = models.ImageField(blank=True)
 
     def __str__(self):
@@ -29,10 +30,21 @@ class SocialMedia(models.Model):
         return f"{self.artist} - {self.name}"
 
 
+class Video(models.Model):
+    name = models.CharField(max_length=120)
+    url = models.URLField()
+    artist = models.ForeignKey(Artist, related_name="video", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.artist} - {self.name}"
+
+
 class Album(models.Model):
     name = models.CharField(max_length=200)
     cover = models.URLField(blank=True, help_text=_("album cover image"))
-    artist = models.ForeignKey(Artist, help_text=_("Name of the artists on Album"), on_delete=models.CASCADE)
+    artist = models.ForeignKey(
+        Artist, related_name="album", help_text=_("Name of the artists on Album"), on_delete=models.CASCADE
+    )
     active = models.BooleanField(default=False)
     is_featured = models.BooleanField(default=False, help_text=_("Whether album is current album thats out now."))
     slug = models.SlugField(editable=False)
