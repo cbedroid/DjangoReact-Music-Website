@@ -7,9 +7,8 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 
 
-
 function Header() {
-  const nav_links = ["Home", "Music", "About"];
+  const nav_links = [{ route: "/", name: "Home" }, { route: "/albums", name: "Music" }, { route: "/", name: "About" }];
   const darkModeRef = useRef(0)
   const [theme, setTheme] = useState("light")
 
@@ -89,7 +88,7 @@ function Header() {
 
   }
   return (
-    <header className="fixed top-0 left-0 w-full z-30 bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-200 body-font">
+    <header className="fixed top-0 left-0 w-full z-50 bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-200 body-font">
       <div className="container mx-auto flex flex-wrap p-2 flex-col md:flex-row items-center">
         <Link to="/" className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
           <img className="rounded-full drop-shadow bg-white h-16 w-16" src={Logo} alt="site-logo" />
@@ -97,7 +96,7 @@ function Header() {
         </Link>
         <nav className="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
           {/* Fix link 'to' route */}
-          {nav_links.map((link, i) => <Link to="/home" className="mr-5 hover:text-gray-400 dark:hover:text-blue-400" key={i}>{link}</Link>)}
+          {Array.from(nav_links).map((link, i) => <Link to={link.route} className="mr-5 hover:text-gray-400 dark:hover:text-blue-400" key={i}>{link.name}</Link>)}
         </nav>
         <FormGroup>
           <FormControlLabel
