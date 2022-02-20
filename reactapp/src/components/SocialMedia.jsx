@@ -2,7 +2,7 @@ import React from "react";
 
 const SocialMedia = ({ social_list }) => {
   return (
-    <div className="wrapper bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300  p-8">
+    <div className="wrapper relative top-30 left-0 block  text-gray-800 dark:text-gray-300 h-48 p-8">
       <h1 className="text-4xl font-bold">Social Link</h1>
       <ul className="flex text-gray-300 gap-x-8 my-4">
         {social_list?.map((social_icon, i) => {

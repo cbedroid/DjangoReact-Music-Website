@@ -10,10 +10,10 @@ import "./styles/app.css"
 function App() {
   const dispatch = useDispatch()
   useEffect(() => {
-    console.log("App loaded")
     dispatch(fetchAllArtists())
     dispatch(fetchAlbums())
     dispatch(fetchAllVideos())
+    console.log("App loaded")
   })
 
   return (
