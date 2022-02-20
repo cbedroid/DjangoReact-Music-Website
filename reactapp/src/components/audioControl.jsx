@@ -87,7 +87,7 @@ const AudioControl = ({ audioRef, progressRef, song, songlist, songSetter }) => 
   )
 }
 
-AudioControl.defaultProps = {
+AudioControl.propTypes = {
   audioRef: PropTypes.object.isRequired,
   progressRef: PropTypes.object.isRequired,
   song: PropTypes.object.isRequired,

@@ -10,11 +10,13 @@ function MusicPlayer({ songlist, song, songSetter }) {
   const progressRef = useRef(null)
 
   const handleProgressBar = () => {
-    const audio_duration = audioRef.current.audio.current.duration
-    const audio_current_time = audioRef.current.audio.current.currentTime
-    const progress_bar = progressRef.current
-    const current_pos = 100 * (audio_current_time / audio_duration)
-    progress_bar.style.width = `${current_pos.toPrecision()}%`
+    if (audioRef.current) {
+      const audio_duration = audioRef.current.audio.current.duration
+      const audio_current_time = audioRef.current.audio.current.currentTime
+      const progress_bar = progressRef.current
+      const current_pos = 100 * (audio_current_time / audio_duration)
+      progress_bar.style.width = `${current_pos.toPrecision()}%`
+    }
 
   }
 
