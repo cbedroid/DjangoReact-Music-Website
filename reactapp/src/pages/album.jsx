@@ -1,26 +1,23 @@
 import axios from "axios"
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchAlbums, selectAllAlbums } from "../features/album";
+import { useSelector } from "react-redux";
+import { selectAllAlbums } from "../features/album";
 import AlbumSkeleton from "../components/AlbumSkeleton.jsx";
 import AudioPlayer from "../components/audioPlayer.jsx"
 
 const Album = ({ match }) => {
 
   let albumId = match.params.id
-  const dispatch = useDispatch()
   const [album, setAlbum] = useState({ songs: [], artist: {} })
   const [songs, setSongs] = useState([{}])
   const [currentSong, setCurrentSong] = useState({})
-  const albums = useSelector(selectAllAlbums)
+  const albums = useSelector(state => selectAllAlbums(state))
 
-  let apiReady = () => albums.length > 0
 
   useEffect(() => {
-    dispatch(fetchAlbums());
     getAlbumById();
     getSongs();
-  }, [apiReady()]);
+  }, [albums, album]);
 
 
   const getAlbumById = () => {
@@ -62,29 +59,40 @@ const Album = ({ match }) => {
   return (
     <section className="relative bg-white dark:bg-gray-800 min-h-screen p-4 py-24">
       {albums.length > 0 && album ? (
-        <div className="container mx-auto px-6 flex relative ">
+        <div className="md:container mx-auto md:px-6 flex relative ">
           <div className="bg-gray-200 dark:bg-gray-600 w-full pb-4 rounded-md">
+            <div className="album-header mobile-screen block lg:hidden  text-center lg:text-left py-4 lg:mb-12">
+              <h2 className="tracking-tight text-4xl md:text-6xl leading-8 font-extrabold  sm:leading-9 mb-4">
+                <span className="block text-gray-600 dark:text-indigo-400 font-bold mb-2">{album.artist.name}</span>
+              </h2>
+              <h2 className="text-xl md:text-3xl leading-8  text-gray-400 font-semibold pl-3">{album.name}</h2>
+            </div>
             <div id="album-detail" className="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-12 py-16">
-              <div className="lg:col-start-2 md:pl-20">
-                <h2 className="text-6xl leading-8 font-extrabold  tracking-tight sm:leading-9 mb-4">
-                  <span className="block text-gray-600 dark:text-indigo-400 font-bold mb-2">{album.artist.name}</span>
-                </h2>
-                <h2 className="text-3xl leading-8  text-gray-400 font-semibold pl-3">{album.name}</h2>
-                <div className="audio-wrapper mt-8">
+              <div className="lg:col-start-2 lg:pl-20">
+                <div className="album-header large-screen hidden lg:block">
+                  <h2 className="tracking-tight  text-6xl leading-8 font-extrabold sm:leading-9 mb-4">
+                    <span className="block text-gray-600 dark:text-indigo-400 font-bold mb-2">{album.artist.name}</span>
+                  </h2>
+                  <h2 className="text-xl md:text-3xl leading-8  text-gray-400 font-semibold pl-3">{album.name}</h2>
+                </div>
+                <div className="audio-wrapper hidden lg:block mt-8">
                   <AudioPlayer songlist={songs} song={currentSong} songSetter={setCurrentSong} />
                 </div>
               </div>
               <div className="mt-16 -mx-4 md:-mx-12 relative lg:mt-0 lg:col-start-1 text-4xl text-gray-200">
-                <img className="relative rounded-md shadow-md w-3/5  h-96 mx-auto -translate-y-1/4" src={album ? album.cover : "/images/object/8.jpg"} alt="album cover" />
+                <img className="relative rounded-md object-scale-down  md:object-fill md:shadow-md  md:w-4/5 lg:w-3/5  md:h-96 mx-auto -translate-y-1/4" src={album ? album.cover : "/images/object/8.jpg"} alt="album cover" />
+                <div className="audio-mobile-wrapper block lg:hidden md:px-16 lg:px-4">
+                  <AudioPlayer audioPlay={false} songlist={songs} song={currentSong} songSetter={setCurrentSong} />
+                </div>
               </div>
             </div>
-            <div id="song-list" className="pl-28 -mt-24">
+            <div id="song-list" className="px-4 lg:pl-28  -mt-12 md:-mt-24">
               <ul className="flex flex-col">
                 {songs.length > 0 ? songs.map((song, i) => {
                   return (
-                    <li key={i} className="track group hover:bg-indigo-400 hover:drop-shadow rounded-md p-2 ease-in-out duration-400 mb-4 pr-12">
+                    <li key={i} className="track group hover:bg-indigo-400 hover:drop-shadow rounded-md p-2 ease-in-out duration-400 mb-4 lg:pr-12">
                       <button className="w-full" onClick={() => { handleSongClick(song) }} >
-                        <div className="flex items-start justify-between w-full pr-4">
+                        <div className="flex flex-wrap items-start justify-between w-full pr-4">
                           <div className="track--left flex">
                             <div id="track-tray" className="flex flex-shrink-0 self-start items-center content-center gap-2 ">
                               <span className="font-bold">{i + 1}</span>

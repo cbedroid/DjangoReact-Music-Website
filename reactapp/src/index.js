@@ -4,16 +4,7 @@ import "./index.css";
 import App from "./App";
 import { Provider } from "react-redux";
 import reportWebVitals from "./reportWebVitals";
-
-
-import albumReducer from "./features/album"
-import { configureStore } from "@reduxjs/toolkit";
-
-
-
-const store = configureStore({
-  reducer: { album: albumReducer },
-});
+import { store } from "./features/store"
 
 ReactDOM.render(
   <React.StrictMode>

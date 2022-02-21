@@ -7,11 +7,29 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 
 
-
-function Header() {
-  const nav_links = ["Home", "Music", "About"];
+function Nav() {
+  const nav_links = [{ route: "/", name: "Home" }, { route: "/albums", name: "Music" }, { route: "/", name: "About" }];
   const darkModeRef = useRef(0)
   const [theme, setTheme] = useState("light")
+  const [is_scroll, setScroll] = useState(0)
+
+
+  useEffect(() => {
+
+    console.log("Theme loaded")
+    if (!localStorage.theme) {
+      localStorage.theme = "light"
+    }
+    setTheme(localStorage.theme)
+    handleTheme()
+  }, [theme])
+
+
+  useEffect(() => {
+    window.addEventListener("scroll", handlePageScroll)
+  }, [])
+
+
 
   const handleTheme = () => {
     if (localStorage.theme === "dark" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
@@ -21,16 +39,17 @@ function Header() {
     }
 
   }
-  useEffect(() => {
+  const handlePageScroll = () => {
+    setScroll(window.pageYOffset > 0)
+  }
 
-    if (!localStorage.theme) {
-      localStorage.theme = "light"
-    }
+  const handleDarkModeSwitch = () => {
+    const theme_switch = darkModeRef.current.children[0]
+    localStorage.theme = theme_switch.checked ? "dark" : "light"
     setTheme(localStorage.theme)
     handleTheme()
 
-
-  }, [1 === 1])
+  }
 
   const MaterialUISwitch = styled(Switch)(() => ({
     width: 62,
@@ -80,16 +99,9 @@ function Header() {
   }));
 
 
-
-  const handleDarkModeSwitch = () => {
-    const theme_switch = darkModeRef.current.children[0]
-    localStorage.theme = theme_switch.checked ? "dark" : "light"
-    setTheme(localStorage.theme)
-    handleTheme()
-
-  }
   return (
-    <header className="fixed top-0 left-0 w-full z-30 bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-200 body-font">
+    <div id="main-nav" onScroll={() => handlePageScroll()}
+      className={`fixed top-0 left-0 w-full z-50  ${is_scroll ? "shadow-xl bg-gray-50" : "bg-white"}  dark:bg-gray-700 text-gray-700 dark:text-gray-200 body-font`} >
       <div className="container mx-auto flex flex-wrap p-2 flex-col md:flex-row items-center">
         <Link to="/" className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
           <img className="rounded-full drop-shadow bg-white h-16 w-16" src={Logo} alt="site-logo" />
@@ -97,21 +109,21 @@ function Header() {
         </Link>
         <nav className="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
           {/* Fix link 'to' route */}
-          {nav_links.map((link, i) => <Link to="/home" className="mr-5 hover:text-gray-400 dark:hover:text-blue-400" key={i}>{link}</Link>)}
+          {Array.from(nav_links).map((link, i) => <Link to={link.route} className="mr-5 hover:text-gray-400 dark:hover:text-blue-400" key={i}>{link.name}</Link>)}
         </nav>
-        <FormGroup>
-          <FormControlLabel
-            control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked={theme === "dark" ? true : false} ref={darkModeRef} onChange={handleDarkModeSwitch} />}
-            label="Dark mode"
-
-
-          />
-        </FormGroup>
+        <div className="theme-switch hidden md:block">
+          <FormGroup>
+            <FormControlLabel
+              control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked={theme === "dark" ? true : false} ref={darkModeRef} onChange={handleDarkModeSwitch} />}
+              label="Dark mode"
+            />
+          </FormGroup>
+        </div>
 
       </div>
-    </header>
+    </div>
   )
 
 }
 
-export default Header;
+export default Nav;

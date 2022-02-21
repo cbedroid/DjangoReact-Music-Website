@@ -70,13 +70,13 @@ const AudioControl = ({ audioRef, progressRef, song, songlist, songSetter }) => 
 
   return (
     <div id="audio-controls">
-      <div className="progress-bar">
+      <div className="progress-bar ">
         <div className="w-full h-4 bg-gray-400 rounded-full mt-3">
           <div className="w-0 h-full text-center text-xs text-white bg-indigo-500 rounded-md" ref={progressRef}>
           </div>
         </div>
       </div>
-      <div className="flex gap-x-6 p-4">
+      <div className="flex justify-center md:justify-start gap-x-6 p-4 py-8">
         <IconButton click_handler={setTrack} icon={faFastBackward} ref={rewRef} />
         <IconButton click_handler={loadAudio} icon={faPlay} ref={playRef} />
         <IconButton btn_class="hidden" click_handler={() => handleButtonEvent("play")} icon={faPause} ref={pauseRef} />
@@ -87,7 +87,7 @@ const AudioControl = ({ audioRef, progressRef, song, songlist, songSetter }) => 
   )
 }
 
-AudioControl.defaultProps = {
+AudioControl.propTypes = {
   audioRef: PropTypes.object.isRequired,
   progressRef: PropTypes.object.isRequired,
   song: PropTypes.object.isRequired,
