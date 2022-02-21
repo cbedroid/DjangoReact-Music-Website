@@ -15,6 +15,7 @@ const VideoSlider = ({ videos }) => {
 
 
   const forceUpdate = useCallback(() => updateState({}), []);
+
   const getSliderEl = () => {
     const content = videos.map((video => {
       return { ...video, main: videos[1] === video, active: videos.indexOf(video) < 3, classes: videos[1] === video ? "scale-lg" : "scale-sm" }
@@ -24,6 +25,7 @@ const VideoSlider = ({ videos }) => {
 
 
   const setDefaultSlide = (slide, active = false) => {
+    // default state for slides: `active=false`, `main=false`
     slide.classes = "scale-sm"
     slide.main = false
     slide.active = active
@@ -32,6 +34,7 @@ const VideoSlider = ({ videos }) => {
 
 
   const shiftSlide = (slider) => {
+    // set `active` and `main` state for all slides
     slider = slider.map((slide) => setDefaultSlide(slide))
     const empty_array = [...Array(3)]
     empty_array.map((_, i) => {
@@ -45,15 +48,19 @@ const VideoSlider = ({ videos }) => {
 
   const handleLeftButton = () => {
     let slider_copy = sliderEl
+    // pop first element from stack and push it to the bottom
     const firstEl = slider_copy.shift()
     slider_copy.push(firstEl)
+
     shiftSlide(slider_copy)
 
   }
   const handleRightButton = () => {
     let slider_copy = sliderEl
+    // pop last element from stack and push it to the top
     const firstEl = slider_copy.pop()
     slider_copy.unshift(firstEl)
+
     shiftSlide(slider_copy)
 
   }
