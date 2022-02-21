@@ -49,23 +49,22 @@ const Hero = ({ artist }) => {
                 </div>
               </div>
               <div className="hidden sm:block sm:w-1/3 lg:w-3/5 text-gray-200 relative">
-                {artist?.length !== 0 ?
-                  <img className="mx-auto w-[700px] h-[700px] rounded-md shadow-lg" src={artist ? artist.image : "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.alhaya-medical.com%2Fwp-content%2Fuploads%2F2017%2F10%2FLoading-GIF-Image-4.gif&f=1&nofb=1"} alt="artist" />
-                  :
-                  <Skeleton variant="rectangular" width="700px" height="700px" />
-                }
+                <img className="mx-auto w-[700px] h-[600px] rounded-md shadow-lg" src={artist?.image} alt="artist" />
               </div>
             </div>
           ) : (
 
-            <div className="container mx-auto px-6 flex flex-col relative">
-              <Skeleton className="rounded-md" variant="text" width="400px" height="75px" />
-              <Skeleton className="rounded-md" variant="text" width="400px" height="55px" />
-              <Skeleton className="rounded-md" variant="text" width="400px" height="165px" />
-              <div className="flex gap-x-2">
-                <Skeleton className="rounded-md" variant="rectangular" width="85px" height="45px" />
-                <Skeleton className="rounded-md" variant="rectangular" width="85px" height="45px" />
+            <div className="container mx-auto px-6 flex  relative">
+              <div className="skeleton-wrapper sm:w-2/3 lg:w-2/5 flex flex-col relative z-20">
+                <Skeleton className="rounded-md" variant="text" width="400px" height="75px" />
+                <Skeleton className="rounded-md" variant="text" width="400px" height="55px" />
+                <Skeleton className="rounded-md" variant="text" width="400px" height="165px" />
+                <div className="flex gap-x-2">
+                  <Skeleton className="rounded-md" variant="rectangular" width="85px" height="45px" />
+                  <Skeleton className="rounded-md" variant="rectangular" width="85px" height="45px" />
+                </div>
               </div>
+              <Skeleton className="bg-gray-600 rounded-md" variant="rectangular" animation={"wave"} width={700} height={600} />
             </div>
           )
           }

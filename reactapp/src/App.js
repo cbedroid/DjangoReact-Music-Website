@@ -4,11 +4,12 @@ import { useDispatch } from "react-redux";
 import { fetchAllArtists, fetchAlbums, fetchAllVideos } from "./features/album"
 import Base from "./pages/Base.js"
 import BaseRouter from "./routes.js";
-import Header from "./components/Header.jsx";
+import Nav from "./components/Nav.jsx";
 import "./styles/app.css"
 
 function App() {
   const dispatch = useDispatch()
+
   useEffect(() => {
     dispatch(fetchAllArtists())
     dispatch(fetchAlbums())
@@ -16,10 +17,13 @@ function App() {
     console.log("App loaded")
   })
 
+
+
+
   return (
-    <div className="App">
+    <div className="App" >
       <Router>
-        <Header />
+        <Nav />
         <Base>
           <BaseRouter />
         </Base>
